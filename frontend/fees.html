@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<title>HostelEase — Fees</title>
+<link rel="stylesheet" href="css/style.css" />
+</head>
+
+<body>
+  <div class="topbar" id="topbar"></div>
+
+  <div class="container">
+    <div id="msg"></div>
+
+    <!-- Admin/Warden Fee Generation -->
+    <div class="card" id="adminGenerateCard" style="display:none">
+      <h2>Generate Fee Record</h2>
+
+      <form class="inline" id="genForm">
+
+        <div class="field">
+          <label>Student</label>
+          <select id="gStudent" required>
+            <option value="">Select Student</option>
+          </select>
+        </div>
+
+        <div class="field">
+          <label>Room</label>
+          <select id="gRoom" required>
+            <option value="">Select Room</option>
+          </select>
+        </div>
+
+        <div class="field">
+          <label>Billing Cycle</label>
+          <input
+            type="text"
+            id="gCycle"
+            placeholder="2026-Odd-Sem"
+            required
+          />
+        </div>
+
+        <div class="field">
+          <label>Mess Charges</label>
+          <input
+            type="number"
+            id="gMess"
+            value="2000"
+            min="0"
+          />
+        </div>
+
+        <div class="field">
+          <label>Due Date</label>
+          <input
+            type="date"
+            id="gDue"
+            required
+          />
+        </div>
+
+        <button type="submit">Generate Fee</button>
+
+      </form>
+
+      <p style="font-size:12px;color:var(--muted);margin-top:12px;">
+        Select the student and room from the dropdowns, enter the billing cycle,
+        mess charges and due date, then click <strong>Generate Fee</strong>.
+      </p>
+    </div>
+
+    <!-- Fee Records -->
+    <div class="card">
+      <h2 id="feesHeading">Fee Records</h2>
+
+      <table id="feesTable">
+        <thead>
+          <tr>
+            <th>Student</th>
+            <th>Cycle</th>
+            <th>Rent</th>
+            <th>Mess</th>
+            <th>Late Fine</th>
+            <th>Total</th>
+            <th>Paid</th>
+            <th>Balance</th>
+            <th>Status</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+
+        <tbody></tbody>
+      </table>
+    </div>
+
+  </div>
+
+  <script src="js/api.js"></script>
+  <script src="js/fees.js"></script>
+
+</body>
+</html>
