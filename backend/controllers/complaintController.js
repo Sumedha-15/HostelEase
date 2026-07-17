@@ -111,3 +111,67 @@ const rateComplaint = async (req, res, next) => {
 };
 
 module.exports = { createComplaint, myComplaints, listComplaints, updateComplaint, rateComplaint };
+    const escalated = await Promise.all(complaints.map(applyEscalationIfDue));
+    res.json(escalated);
+  } catch (err) {
+    next(err);
+  }
+};
+
+// If a complaint has sat 'open' longer than COMPLAINT_ESCALATION_HOURS since
+// it was last escalated, bump its priority one level (capped at 'critical').
+async function applyEscalationIfDue(complaint) {
+  if (['resolved', 'closed'].includes(complaint.status)) return complaint;
+
+  const escalationHours = Number(process.env.COMPLAINT_ESCALATION_HOURS) || 48;
+  const hoursSinceEscalation = (Date.now() - new Date(complaint.lastEscalatedAt).getTime()) / (1000 * 60 * 60);
+
+  if (hoursSinceEscalation >= escalationHours) {
+    const currentIndex = PRIORITY_ORDER.indexOf(complaint.priority);
+    const nextIndex = Math.min(currentIndex + 1, PRIORITY_ORDER.length - 1);
+    if (nextIndex !== currentIndex) {
+      complaint.priority = PRIORITY_ORDER[nextIndex];
+      complaint.lastEscalatedAt = new Date();
+      await complaint.save();
+    }
+  }
+  return complaint;
+}
+
+// @route PATCH /api/complaints/:id  (admin/warden) - assign, change status/notes
+const updateComplaint = async (req, res, next) => {
+  try {
+    const { status, assignedTo, resolutionNotes } = req.body;
+    const complaint = await Complaint.findById(req.params.id);
+    if (!complaint) return res.status(404).json({ message: 'Complaint not found' });
+
+    if (status) complaint.status = status;
+    if (assignedTo) complaint.assignedTo = assignedTo;
+    if (resolutionNotes) complaint.resolutionNotes = resolutionNotes;
+    if (status === 'resolved') complaint.resolvedAt = new Date();
+
+    await complaint.save();
+    res.json(complaint);
+  } catch (err) {
+    next(err);
+  }
+};
+
+// @route POST /api/complaints/:id/rate  (student) - rate after resolution
+const rateComplaint = async (req, res, next) => {
+  try {
+    const { rating } = req.body;
+    const complaint = await Complaint.findOne({ _id: req.params.id, student: req.user._id });
+    if (!complaint) return res.status(404).json({ message: 'Complaint not found' });
+    if (complaint.status !== 'resolved') {
+      return res.status(400).json({ message: 'You can only rate a resolved complaint' });
+    }
+    complaint.studentRating = rating;
+    await complaint.save();
+    res.json(complaint);
+  } catch (err) {
+    next(err);
+  }
+};
+
+module.exports = { createComplaint, myComplaints, listComplaints, updateComplaint, rateComplaint };
