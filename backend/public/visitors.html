@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+
+
+<head>
+<meta charset="UTF-8" />
+<title>HostelEase — Visitors</title>
+<link rel="stylesheet" href="css/style.css" />
+<link href="https://cdn.jsdelivr.net/npm/tom-select/dist/css/tom-select.css" rel="stylesheet">
+</head>
+
+<body>
+
+<div class="topbar" id="topbar"></div>
+
+<div class="container">
+
+    <div id="msg"></div>
+
+    <div class="card">
+
+        <h2>Check in a Visitor</h2>
+
+        <form class="inline" id="checkinForm">
+
+            <!-- Student Dropdown -->
+
+            <div class="field">
+
+                <label>Student</label>
+
+                <select id="vHost" required>
+
+                    <option value="">Select Student</option>
+
+                </select>
+
+            </div>
+
+            <!-- Room Dropdown -->
+
+            <div class="field">
+
+                <label>Room</label>
+
+                <select id="vRoom" required>
+
+                    <option value="">Select Room</option>
+
+                </select>
+
+            </div>
+
+            <!-- Visitor Name -->
+
+            <div class="field">
+
+                <label>Visitor Name</label>
+
+                <input type="text" id="vName" required>
+
+            </div>
+
+            <!-- ID Proof -->
+
+            <div class="field">
+
+                <label>ID Proof Type</label>
+
+                <select id="vIdType">
+
+                    <option value="aadhaar">Aadhaar</option>
+                    <option value="passport">Passport</option>
+                    <option value="driving_license">Driving License</option>
+                    <option value="voter_id">Voter ID</option>
+                    <option value="other">Other</option>
+
+                </select>
+
+            </div>
+
+            <!-- ID Number -->
+
+            <div class="field">
+
+                <label>ID Proof Number</label>
+
+                <input type="text" id="vIdNum" required>
+
+            </div>
+
+            <!-- Purpose -->
+
+            <div class="field">
+
+                <label>Purpose</label>
+
+                <input type="text" id="vPurpose" required>
+
+            </div>
+
+            <button type="submit">
+
+                Check In
+
+            </button>
+
+        </form>
+
+        <p style="font-size:12px;color:var(--muted);margin-top:10px;">
+
+            Visitor entry will be blocked automatically if the student has pending hostel fees beyond the grace period.
+
+        </p>
+
+    </div>
+
+    <div class="card">
+
+        <h2>Visitor Log</h2>
+
+        <table id="visitorsTable">
+
+            <thead>
+
+            <tr>
+
+                <th>Visitor</th>
+                <th>Host</th>
+                <th>Room</th>
+                <th>Purpose</th>
+                <th>Check-In</th>
+                <th>Check-Out</th>
+                <th>Status</th>
+                <th>Action</th>
+
+            </tr>
+
+            </thead>
+
+            <tbody></tbody>
+
+        </table>
+
+    </div>
+
+</div>
+
+<script src="js/api.js"></script>
+<script src="js/visitors.js"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/tom-select/dist/js/tom-select.complete.min.js"></script>
+</body>
+</html>

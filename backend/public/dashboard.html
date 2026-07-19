@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>HostelEase — Dashboard</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+
+    <!-- Top Navigation -->
+    <div class="topbar" id="topbar"></div>
+
+    <div class="container">
+
+        <!-- Messages -->
+        <div id="msg"></div>
+
+        <!-- Summary Cards -->
+        <div class="grid grid-3" id="statCards"></div>
+
+        <!-- Hostel Occupancy -->
+        <div class="card">
+            <h2>Occupancy by Hostel</h2>
+
+            <table id="occupancyTable">
+                <thead>
+                    <tr>
+                        <th>Hostel</th>
+                        <th>Rooms</th>
+                        <th>Capacity</th>
+                        <th>Occupied</th>
+                        <th>Vacant</th>
+                        <th>Occupancy %</th>
+                    </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+        </div>
+
+        <!-- Room Type Breakdown -->
+        <div class="card">
+            <h2>Room Type Breakdown</h2>
+
+            <table id="roomTypeTable">
+                <thead>
+                    <tr>
+                        <th>Room Type</th>
+                        <th>Capacity</th>
+                        <th>Occupied</th>
+                        <th>Occupancy %</th>
+                    </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+        </div>
+
+        <!-- Fee Defaulters -->
+        <div class="card">
+            <h2>Fee Defaulters (Overdue &gt; 14 Days Grace)</h2>
+
+            <table id="defaultersTable">
+                <thead>
+                    <tr>
+                        <th>Student</th>
+                        <th>Student ID</th>
+                        <th>Outstanding</th>
+                    </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+        </div>
+
+    </div>
+
+    <script src="js/api.js"></script>
+    <script src="js/dashboard.js"></script>
+
+</body>
+
+</html>

@@ -1,0 +1,244 @@
+
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Inter', Arial, Helvetica, sans-serif;
+}
+
+body{
+    background:#f4f6fb;
+    color:#22243b;
+}
+
+.student-container{
+    display:flex;
+    min-height:100vh;
+}
+
+/* ============ Sidebar ============ */
+
+.sidebar{
+    width:250px;
+    background:linear-gradient(185deg, #10142c 0%, #1b2050 100%);
+    color:white;
+    padding:25px 18px;
+    position:fixed;
+    height:100vh;
+    box-shadow:4px 0 20px rgba(0,0,0,.15);
+}
+
+.sidebar h2{
+    text-align:center;
+    margin-bottom:35px;
+    font-family:'Fraunces', serif;
+    font-weight:600;
+    letter-spacing:-0.01em;
+    color:#f6c667;
+}
+
+.sidebar ul{
+    list-style:none;
+}
+
+.sidebar ul li{
+    margin:8px 0;
+}
+
+.sidebar ul li a{
+    text-decoration:none;
+    color:#c7cae7;
+    display:flex;
+    align-items:center;
+    gap:10px;
+    font-weight:500;
+    font-size:14.5px;
+    padding:13px 14px;
+    border-radius:11px;
+    transition:.2s ease;
+}
+
+.sidebar ul li a:hover{
+    background:rgba(255,255,255,.07);
+    color:#fff;
+}
+
+.sidebar ul li a.active{
+    background:linear-gradient(135deg, #f0a83e, #d1801f);
+    color:#241505;
+    font-weight:700;
+    box-shadow:0 6px 16px -6px rgba(240,168,62,.6);
+}
+
+/* ============ Main ============ */
+
+.main-content{
+    margin-left:250px;
+    width:100%;
+    padding:35px 42px 60px;
+}
+
+/* ============ Welcome / hero ============ */
+
+.welcome-card{
+    position:relative;
+    overflow:hidden;
+    background:linear-gradient(120deg, #10142c 0%, #1b2050 55%, #2b306c 100%);
+    border-radius:20px;
+    padding:32px 36px;
+    margin-bottom:25px;
+    box-shadow:0 10px 30px -10px rgba(16,20,44,.35);
+}
+
+/* faint roofline pattern to echo the hostel theme, purely decorative */
+.welcome-card::before{
+    content:"";
+    position:absolute;
+    inset:0;
+    opacity:.12;
+    background-image:radial-gradient(circle at 15% 20%, rgba(240,168,62,.55), transparent 55%);
+    pointer-events:none;
+}
+
+.welcome-card h1{
+    position:relative;
+    font-family:'Fraunces', serif;
+    font-weight:600;
+    font-size:28px;
+    color:#ffffff;
+}
+
+.welcome-card p{
+    position:relative;
+    margin-top:8px;
+    color:#c7cae7;
+    font-size:14.5px;
+}
+
+.welcome-card small{
+    position:relative;
+    display:block;
+    margin-top:2px;
+    color:#8f93bf;
+    font-size:13px;
+}
+
+/* ============ Stat cards ============ */
+
+.dashboard-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+    gap:20px;
+    margin-bottom:30px;
+}
+
+.dashboard-card{
+    position:relative;
+    background:white;
+    border-radius:16px;
+    padding:22px 24px 20px;
+    border:1px solid #eceefa;
+    box-shadow:0 4px 15px rgba(0,0,0,.05);
+    transition:.2s ease;
+}
+
+.dashboard-card:hover{
+    transform:translateY(-4px);
+    box-shadow:0 14px 28px -14px rgba(24,27,58,.22);
+}
+
+.dashboard-card h3{
+    color:#767a94;
+    font-size:13px;
+    font-weight:600;
+    text-transform:uppercase;
+    letter-spacing:.04em;
+    margin-bottom:14px;
+}
+
+.dashboard-card h2{
+    font-family:'Fraunces', serif;
+    color:#22243b;
+    font-size:27px;
+    font-weight:600;
+}
+
+.dashboard-card p{
+    color:#8a8db0;
+    font-size:12.5px;
+    margin-top:8px;
+}
+
+/* Optional icon badge — add <span class="card-icon gold">…svg/emoji…</span>
+   inside a .dashboard-card, above the h3, to get a colored icon chip. */
+.card-icon{
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    width:38px;
+    height:38px;
+    border-radius:11px;
+    margin-bottom:14px;
+    font-size:18px;
+}
+.card-icon.gold{ background:#fdf1de; color:#8a5a0e; }
+.card-icon.teal{ background:#dff5f1; color:#106158; }
+.card-icon.coral{ background:#fce6e5; color:#9a2a28; }
+.card-icon.violet{ background:#ece9fc; color:#453a9e; }
+
+/* Optional status tag — add <span class="tag ok">All clear</span> or
+   <span class="tag warn">Action needed</span> to the top-right of a card. */
+.tag{
+    position:absolute;
+    top:20px;
+    right:20px;
+    font-size:11px;
+    font-weight:700;
+    padding:4px 10px;
+    border-radius:100px;
+}
+.tag.ok{ background:#dff5f1; color:#106158; }
+.tag.warn{ background:#fce6e5; color:#9a2a28; }
+
+/* ============ Profile ============ */
+
+.profile-card{
+    background:white;
+    padding:28px 26px;
+    border-radius:16px;
+    border:1px solid #eceefa;
+    box-shadow:0 4px 15px rgba(0,0,0,.05);
+}
+
+.profile-card h2{
+    margin-bottom:18px;
+    font-family:'Fraunces', serif;
+    font-weight:600;
+    color:#1b2050;
+    font-size:19px;
+}
+
+.profile-card table{
+    width:100%;
+    border-collapse:collapse;
+}
+
+.profile-card td{
+    padding:15px 8px;
+    border-bottom:1px solid #eee;
+    font-size:14.5px;
+}
+
+.profile-card td:first-child{
+    width:180px;
+    color:#767a94;
+    font-weight:600;
+    font-size:13px;
+    text-transform:uppercase;
+    letter-spacing:.03em;
+}
+
+.profile-card tr:last-child td{
+    border-bottom:none;
+}

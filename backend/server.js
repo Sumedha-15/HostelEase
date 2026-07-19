@@ -18,8 +18,7 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-// Serve the simple HTML/JS frontend
-app.use(express.static(path.join(__dirname, '..', 'frontend')));
+app.use(express.static(path.join(__dirname, 'public')));
 
 app.get('/api/health', (req, res) => res.json({ status: 'ok', service: 'HostelEase API' }));
 app.use('/api/users', userRoutes);
