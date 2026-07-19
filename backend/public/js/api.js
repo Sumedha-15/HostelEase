@@ -1,8 +1,7 @@
 // Small fetch wrapper shared by every page. Uses in-memory + localStorage
 // only for the JWT token (not app data), since the token must survive a
 // page reload for a usable demo.
-const API_BASE = 'http://localhost:5000/api';
-
+const API_BASE = '/api';
 const Auth = {
   getToken() { return localStorage.getItem('hostelease_token'); },
   getUser() {
