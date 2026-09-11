@@ -19,6 +19,7 @@ app.use(cors());
 app.use(express.json());
 
 app.use(express.static(path.join(__dirname, 'public')));
+app.get('/favicon.ico', (req, res) => res.sendFile(path.join(__dirname, 'public', 'favicon.svg')));
 
 app.get('/api/health', (req, res) => res.json({ status: 'ok', service: 'HostelEase API' }));
 app.use('/api/users', userRoutes);

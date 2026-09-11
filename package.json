@@ -1,0 +1,10 @@
+{
+  "name": "hostelease-root",
+  "version": "1.0.0",
+  "description": "HostelEase root helper",
+  "scripts": {
+    "start": "npm --prefix backend start",
+    "dev": "npm --prefix backend run dev",
+    "seed": "npm --prefix backend run seed"
+  }
+}

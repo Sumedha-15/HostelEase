@@ -42,6 +42,11 @@ async function apiRequest(path, { method = 'GET', body, auth = true } = {}) {
   try { data = await res.json(); } catch (e) { data = {}; }
 
   if (!res.ok) {
+    if (res.status === 401 && auth) {
+      Auth.clear();
+      window.location.href = 'index.html';
+      return;
+    }
     throw new Error(data.message || `Request failed (${res.status})`);
   }
   return data;
